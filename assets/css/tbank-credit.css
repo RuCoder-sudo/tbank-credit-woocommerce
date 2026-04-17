@@ -1,0 +1,301 @@
+/* ============================================================
+   Т-Банк Рассрочка и Кредит для WooCommerce — v2.0.0
+   Автор: Сергей Солошенко (RuCoder) — https://рукодер.рф/
+   ============================================================ */
+
+/* ─── CSS Custom Properties ─────────────────────────────────── */
+:root {
+    --tbc-color: #FFDD2D;
+    --tbc-radius: 8px;
+    --tbc-text-color: #1a1a1a;
+    --tbc-shadow: 0 2px 8px rgba(255, 221, 45, 0.35);
+    --tbc-shadow-hover: 0 6px 18px rgba(255, 221, 45, 0.45);
+    --tbc-transition: 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Credit / Installment button ──────────────────────────── */
+.tbank-credit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: var(--tbc-color, #FFDD2D);
+    color: var(--tbc-text-color, #1a1a1a) !important;
+    border: none !important;
+    border-radius: var(--tbc-radius, 8px) !important;
+    padding: 12px 22px !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    line-height: 1.25 !important;
+    letter-spacing: 0.01em;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    transition: box-shadow var(--tbc-transition),
+                transform var(--tbc-transition),
+                filter var(--tbc-transition) !important;
+    box-shadow: var(--tbc-shadow);
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    outline: none !important;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Shine effect overlay */
+.tbank-credit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -80%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        105deg,
+        transparent 20%,
+        rgba(255, 255, 255, 0.35) 50%,
+        transparent 80%
+    );
+    transition: left 0.5s ease;
+    pointer-events: none;
+}
+
+.tbank-credit-btn:hover::before {
+    left: 130%;
+}
+
+.tbank-credit-btn:hover {
+    box-shadow: var(--tbc-shadow-hover);
+    color: var(--tbc-text-color, #1a1a1a) !important;
+    text-decoration: none !important;
+    transform: translateY(-2px);
+    filter: brightness(1.04);
+}
+
+.tbank-credit-btn:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+    filter: brightness(0.96);
+}
+
+.tbank-credit-btn:focus-visible {
+    outline: 3px solid #1a1a1a !important;
+    outline-offset: 2px !important;
+}
+
+/* ─── SVG Icon inside button ─────────────────────────────────── */
+.tbank-credit-btn .tbank-credit-icon,
+.tbank-credit-informer .tbank-credit-icon {
+    flex-shrink: 0;
+    display: block;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* ─── Button text ────────────────────────────────────────────── */
+.tbank-credit-btn__text {
+    display: inline-block;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+/* ─── Wrapper spacing ───────────────────────────────────────── */
+.tbank-credit-product-btn-wrap,
+.tbank-credit-catalog-btn-wrap,
+.tbank-credit-cart-btn-wrap,
+.tbank-credit-checkout-btn-wrap {
+    margin-top: 12px;
+    margin-bottom: 6px;
+}
+
+.tbank-credit-cart-btn-wrap,
+.tbank-credit-checkout-btn-wrap {
+    max-width: 340px;
+}
+
+/* ─── Informer on product page ──────────────────────────────── */
+.tbank-credit-informer {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #fffce8 0%, #fffbe0 100%);
+    border: 1.5px solid #FFDD2D;
+    border-radius: 8px;
+    padding: 10px 16px;
+    margin-bottom: 14px;
+    font-size: 14px;
+    color: #4a3800;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 1px 4px rgba(255, 221, 45, 0.2);
+    transition: box-shadow var(--tbc-transition);
+}
+
+.tbank-credit-informer:hover {
+    box-shadow: 0 2px 8px rgba(255, 221, 45, 0.35);
+}
+
+.tbank-credit-informer__text {
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+/* ─── Installment calculator ─────────────────────────────────── */
+.tbank-credit-calculator {
+    background: #fafafa;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+}
+
+.tbank-credit-calculator__label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.tbank-credit-calculator__periods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tbank-credit-calculator__period-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    border: 1.5px solid #ddd !important;
+    border-radius: 7px !important;
+    padding: 8px 14px !important;
+    cursor: pointer !important;
+    transition: border-color var(--tbc-transition), background var(--tbc-transition), box-shadow var(--tbc-transition);
+    font-family: inherit;
+    line-height: 1.3;
+    min-width: 80px;
+    outline: none;
+}
+
+.tbank-credit-calculator__period-btn:hover,
+.tbank-credit-calculator__period-btn.is-active {
+    border-color: #FFDD2D !important;
+    background: #fffce0 !important;
+    box-shadow: 0 0 0 2px rgba(255, 221, 45, 0.3);
+}
+
+.tbank-credit-calculator__months {
+    font-size: 11px;
+    color: #888;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.tbank-credit-calculator__price {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-top: 2px;
+}
+
+/* ─── Thank you page ────────────────────────────────────────── */
+.tbank-credit-thankyou {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: linear-gradient(135deg, #f0f7ff 0%, #e8f4ff 100%);
+    border-left: 4px solid #1565c0;
+    padding: 16px 20px;
+    margin: 16px 0;
+    border-radius: 4px 8px 8px 4px;
+    font-size: 15px;
+    color: #0d3c6e;
+    line-height: 1.5;
+}
+
+.tbank-credit-thankyou .tbank-credit-icon {
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.tbank-credit-thankyou p {
+    margin: 0;
+}
+
+/* ─── Checkout payment description ─────────────────────────── */
+.payment_method_tbank_credit .payment_box {
+    background: #fffbe6 !important;
+    border-left: 3px solid #FFDD2D !important;
+}
+
+/* ─── Admin description box ─────────────────────────────────── */
+.tbank-credit-admin-desc {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+.tbank-credit-admin-desc h3 {
+    margin-top: 18px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #1d1d1d;
+    border-bottom: 1px solid #e8e8e8;
+    padding-bottom: 5px;
+}
+
+.tbank-credit-admin-desc h3:first-child {
+    margin-top: 0;
+}
+
+.tbank-credit-admin-desc ol {
+    margin-left: 20px;
+    margin-top: 6px;
+}
+
+.tbank-credit-admin-desc ol li {
+    margin-bottom: 4px;
+}
+
+.tbank-credit-admin-desc code {
+    background: #eee;
+    padding: 2px 7px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-family: monospace;
+}
+
+.tbank-credit-admin-desc hr {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin: 14px 0;
+}
+
+/* ─── Responsive ────────────────────────────────────────────── */
+@media (max-width: 600px) {
+    .tbank-credit-btn {
+        font-size: 13px !important;
+        padding: 11px 16px !important;
+    }
+
+    .tbank-credit-calculator__periods {
+        gap: 6px;
+    }
+
+    .tbank-credit-calculator__period-btn {
+        min-width: 70px;
+        padding: 7px 10px !important;
+    }
+
+    .tbank-credit-cart-btn-wrap,
+    .tbank-credit-checkout-btn-wrap {
+        max-width: 100%;
+    }
+}
