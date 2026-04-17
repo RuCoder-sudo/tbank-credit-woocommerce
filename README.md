@@ -1,7 +1,5 @@
 # 💳 Т-Банк Рассрочка и Кредит для WooCommerce
 
-[Русская версия](#-т-банк-рассрочка-и-кредит-для-woocommerce) | [English version](#-t-bank-installment-and-credit-for-woocommerce)
-
 <p align="center">
   <img src="assets/bannerus.png" alt="Т-Банк Рассрочка и Кредит для WooCommerce – платёжный шлюз">
 </p>
